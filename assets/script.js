@@ -5,9 +5,9 @@ var citySearch = $("#citySearch");
 var searchCardEL = $(".card");
 
 var createDate = function () {
-  var currrentDate = dayjs().format("dddd, DD MMM YYYY");
-  console.log(currrentDate);
-  headerDate.text(currrentDate);
+  var currentDate = dayjs().format("dddd, DD MMM YYYY");
+  console.log(currentDate);
+  headerDate.text(currentDate);
 };
 
 var getCityWeather = function (city) {
@@ -21,7 +21,7 @@ var getCityWeather = function (city) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      createWeatherCard(data);
+      currentDay(data);
     });
 
     var forcast = 
@@ -31,8 +31,9 @@ var getCityWeather = function (city) {
     APIKey +
     "&units=imperial";
     fetch(forcast)
-    .then((response => response.json))
+    .then((response => response.json()))
     .then((data) => {
+        console.log(data);
         createWeatherCard(data);
     })
 };
@@ -45,19 +46,9 @@ citySearch.on("submit", function (event) {
   city = city.toLowerCase();
   getCityWeather(city);
 
-  console.log(city);
 });
 
-var createWeatherCard = function (data) {
-  console.log(data);
-
-  const fiveDayForcast = [
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-  ];
+var currentDay = function (data) {
 
   var cardText = `<div class="card" style="width: 18rem;">
 <div class="card-body">
@@ -70,7 +61,33 @@ var createWeatherCard = function (data) {
 </div>
 </div>
 `;
-  $(".card").append(cardText);
+  $("#display").append(cardText);
 };
+
+var createWeatherCard = function (data) {
+    const fiveDayForcast = [
+        { id: 5 },
+        { id: 13 },
+        { id: 21 },
+        { id: 29 },
+        { id: 37 },
+      ];
+
+      fiveDayForcast.forEach((fiveDayForcast) => {
+        var cardText = `<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <h6 class="card-subtitle mb-2 text-muted">${data.list[fiveDayForcast.id].dt_txt}</h6>
+          <p class="card-text">Temp: ${data.list[fiveDayForcast.id].main.temp}.</p>
+          <img src="http://openweathermap.org/img/wn/${data.list[fiveDayForcast.id].weather[0].icon}@2x.png" />
+          <p>Conditions: ${data.list[fiveDayForcast.id].weather[0].description}</p>
+        
+        </div>
+        </div>
+        `;
+          $("#display").append(cardText);
+        
+      })
+}
 
 createDate();
