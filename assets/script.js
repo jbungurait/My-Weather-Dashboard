@@ -4,7 +4,7 @@ let APIKey = '6e9212c1940c5264a43ed792ce5f5c11';
 var headerDate = $('.date');
 var citySearch = $("#citySearch");
 var searchCardEL = $('.card');
-// var displayArea = $('#display');
+
 
 
 var createDate = function() {  
@@ -14,11 +14,13 @@ var createDate = function() {
 };
 
 var getCityWeather = function(city) {
+    createCard();
+
     var weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?q=' + city +'&appid=' + APIKey+"&units=imperial";
     fetch(weatherAPI)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            
             createWeatherCard(data);
         });
     
@@ -38,8 +40,12 @@ citySearch.on('submit', function(event) {
 
    var createCard = function() {
        for (var i = 0; i < 5; i++) {
+            var newCard = document.createElement('div');
+            newCard.classList.add('card');
+            document.getElementById('display').appendChild(newCard);
        }
    }
+
 var createWeatherCard = function(data) { 
 console.log(data)
 
@@ -54,26 +60,7 @@ var cardText = `<div class="card" style="width: 18rem;">
 </div>
 </div>
 `
-        //     var cardbody = $('div');
-        //     //  cardbody.addClass('card-body');
-           
-        //     //cardbody.text(day[i]);
-        //     // cardbody.attr('style', 'width: 20rem;');
-        //      var h6Tag = $("h6")
-        //      h6Tag.textContent = 
-        //      var img = $("img")
-        //      img.attr("src",``)
-        //      var desc = $("p")
-        //      desc.textContent = 
-        //      var wndSpd = $("p")
-        //      wndSpd.textContent = "Wind Speed: "+data.wind.speed
-            
-        // cardbody.append(h6Tag)
-        // cardbody.append(img)
-        // cardbody.append(desc)
-        // cardbody.append(wndSpd)
-        // console.log(cardbody)
-        $("#display").append(cardText);
+        $(".card").append(cardText);
    
  };
 
