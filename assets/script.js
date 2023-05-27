@@ -54,7 +54,9 @@ var currentDay = function (data) {
 <div class="card-body">
   <h5 class="card-title"></h5>
   <h6 class="card-subtitle mb-2 text-muted">Today</h6>
-  <p class="card-text">Temp: ${data.main.temp}.</p>
+  <p class="card-text">Temp: ${data.main.temp}F.</p>
+  <p>Wind Speed: ${data.wind.speed} MPH.</p>
+  <p>Humidity: ${data.main.humidity}</p>
   <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" />
   <p>Conditions: ${data.weather[0].description}</p>
 
@@ -74,11 +76,17 @@ var createWeatherCard = function (data) {
       ];
 
       fiveDayForcast.forEach((fiveDayForcast) => {
+        var day = data.list[fiveDayForcast.id].dt_txt;
+        var formatDay = dayjs(day).format("dddd")
+
+
         var cardText = `<div class="card weekly" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"></h5>
-          <h6 class="card-subtitle mb-2 text-muted">${data.list[fiveDayForcast.id].dt_txt}</h6>
-          <p class="card-text">Temp: ${data.list[fiveDayForcast.id].main.temp}.</p>
+          <h6 class="card-subtitle mb-2 text-muted">${formatDay}</h6>
+          <p class="card-text">Temp: ${data.list[fiveDayForcast.id].main.temp}F.</p>
+          <p>Wind Speed: ${data.list[fiveDayForcast.id].wind.speed} MPH.</p>
+          <p>Humidity: ${data.list[fiveDayForcast.id].main.humidity}</p>
           <img src="http://openweathermap.org/img/wn/${data.list[fiveDayForcast.id].weather[0].icon}@2x.png" />
           <p>Conditions: ${data.list[fiveDayForcast.id].weather[0].description}</p>
         
