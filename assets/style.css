@@ -16,3 +16,11 @@ header {
 .date {
     justify-content: center;
 }
+
+.form {
+    display: flex;
+}
+
+#display {
+    display: flex;
+}

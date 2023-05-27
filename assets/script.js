@@ -50,7 +50,7 @@ citySearch.on("submit", function (event) {
 
 var currentDay = function (data) {
 
-  var cardText = `<div class="card" style="width: 18rem;">
+  var cardText = `<div class="card current" style="width: 18rem;">
 <div class="card-body">
   <h5 class="card-title"></h5>
   <h6 class="card-subtitle mb-2 text-muted">Today</h6>
@@ -61,7 +61,7 @@ var currentDay = function (data) {
 </div>
 </div>
 `;
-  $("#display").append(cardText);
+  $(".form").append(cardText);
 };
 
 var createWeatherCard = function (data) {
@@ -74,7 +74,7 @@ var createWeatherCard = function (data) {
       ];
 
       fiveDayForcast.forEach((fiveDayForcast) => {
-        var cardText = `<div class="card" style="width: 18rem;">
+        var cardText = `<div class="card weekly" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"></h5>
           <h6 class="card-subtitle mb-2 text-muted">${data.list[fiveDayForcast.id].dt_txt}</h6>
