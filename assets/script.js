@@ -4,6 +4,7 @@ var headerDate = $(".date");
 var citySearch = $("#citySearch");
 var searchCardEL = $(".card");
 var city = [];
+var cityStorage = [];
 
 var createDate = function () {
   var currentDate = dayjs().format("dddd, DD MMM YYYY");
@@ -43,9 +44,10 @@ citySearch.on("submit", function (event) {
   event.preventDefault();
 
   city = $("#city").val();
-  localStorage.setItem("Cities", JSON.stringify(city));
+  cityStorage.push(city);
+  localStorage.setItem("Cities", JSON.stringify(cityStorage));
   city = city.toLowerCase();
-  
+
   var current = $(".current");
   current.remove();
   var weekly = $('.weekly');
