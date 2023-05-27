@@ -3,6 +3,7 @@ let APIKey = "6e9212c1940c5264a43ed792ce5f5c11";
 var headerDate = $(".date");
 var citySearch = $("#citySearch");
 var searchCardEL = $(".card");
+var searchHistoryEL = $(".searchHistory");
 var city = [];
 var cityStorage = [];
 
@@ -10,6 +11,22 @@ var createDate = function () {
   var currentDate = dayjs().format("dddd, DD MMM YYYY");
   console.log(currentDate);
   headerDate.text(currentDate);
+};
+
+var cityHistory = function () {
+  var historyButton = $(".cities");
+  historyButton.remove();
+
+  var historyString = localStorage.getItem("Cities");
+  var historyArray = JSON.parse(historyString);
+
+  for (let index = 0; index < historyArray.length; index++) {
+    const listEL = historyArray[index];
+    const buttonEL = `<button class="cities btn btn-success">${listEL}</button>`
+    searchHistoryEL.append(buttonEL);
+    
+  };
+
 };
 
 var getCityWeather = function (city) {
@@ -54,7 +71,7 @@ citySearch.on("submit", function (event) {
   weekly.remove();
 
   getCityWeather(city);
-
+  cityHistory();
 });
 
 var currentDay = function (data) {
@@ -107,3 +124,4 @@ var createWeatherCard = function (data) {
 }
 
 createDate();
+cityHistory();
