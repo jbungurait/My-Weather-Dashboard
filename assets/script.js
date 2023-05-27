@@ -45,13 +45,19 @@ citySearch.on("submit", function (event) {
   city = $("#city").val();
   localStorage.setItem("Cities", JSON.stringify(city));
   city = city.toLowerCase();
+  
+  var current = $(".current");
+  current.remove();
+  var weekly = $('.weekly');
+  weekly.remove();
+
   getCityWeather(city);
 
 });
 
 var currentDay = function (data) {
 
-  var cardText = `<div class="card current" style="width: 18rem;">
+   cardText = `<div class="card current" style="width: 18rem;">
 <div class="card-body">
   <h5 class="card-title"></h5>
   <h6 class="card-subtitle mb-2 text-muted">Today</h6>
@@ -75,13 +81,12 @@ var createWeatherCard = function (data) {
         { id: 29 },
         { id: 37 },
       ];
-
+  
       fiveDayForcast.forEach((fiveDayForcast) => {
         var day = data.list[fiveDayForcast.id].dt_txt;
-        var formatDay = dayjs(day).format("dddd")
+        var formatDay = dayjs(day).format("dddd");
 
-
-        var cardText = `<div class="card weekly" style="width: 18rem;">
+         cardText = `<div class="card weekly" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"></h5>
           <h6 class="card-subtitle mb-2 text-muted">${formatDay}</h6>
