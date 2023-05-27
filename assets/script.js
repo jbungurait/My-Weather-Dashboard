@@ -3,6 +3,7 @@ let APIKey = "6e9212c1940c5264a43ed792ce5f5c11";
 var headerDate = $(".date");
 var citySearch = $("#citySearch");
 var searchCardEL = $(".card");
+var city = [];
 
 var createDate = function () {
   var currentDate = dayjs().format("dddd, DD MMM YYYY");
@@ -41,7 +42,7 @@ var getCityWeather = function (city) {
 citySearch.on("submit", function (event) {
   event.preventDefault();
 
-  var city = $("#city").val();
+  city = $("#city").val();
   localStorage.setItem("Cities", JSON.stringify(city));
   city = city.toLowerCase();
   getCityWeather(city);
