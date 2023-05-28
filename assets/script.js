@@ -22,9 +22,9 @@ var cityHistory = function () {
 
   for (let index = 0; index < historyArray.length; index++) {
     const listEL = historyArray[index];
-    const buttonEL = `<button class="cities btn btn-success">${listEL}</button>`
+    const buttonEL = `<button 
+    class="cities btn btn-success">${listEL}</button>`
     searchHistoryEL.append(buttonEL);
-    
   };
 
 };
@@ -41,6 +41,8 @@ var getCityWeather = function (city) {
     .then((data) => {
       console.log(data);
       currentDay(data);
+    }).catch(error => {
+      throw(error);
     });
 
     var forcast = 
