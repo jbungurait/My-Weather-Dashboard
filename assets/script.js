@@ -25,8 +25,8 @@ var cityHistory = function () {
     const buttonEL = `<button 
     class="cities btn btn-success">${listEL}</button>`
     searchHistoryEL.append(buttonEL);
-  };
 
+  };
 };
 
 var getCityWeather = function (city) {
@@ -57,6 +57,7 @@ var getCityWeather = function (city) {
         console.log(data);
         createWeatherCard(data);
     })
+
 };
 
 citySearch.on("submit", function (event) {

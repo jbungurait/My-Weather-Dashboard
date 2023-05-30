@@ -1,2 +1,2 @@
 # My-Weather-Dashboard
-Landing page for 5 day forcast
+Landing page for 5 day forcast.
