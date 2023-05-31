@@ -7,19 +7,19 @@ Landing page for 5 day forcast.
 
   ## Table of Contents
 
-  - Installation [#installation]
+  - [Installation](#installation)
 
-  - Usage [#usage]
+  - [Usage](#usage)
 
-  - Credits [#credits]
+  - [Credits](#credits)
 
-  - License [#license]
+  - [License](#license)
 
-  - Features [#features]
+  - [Features](#features)
 
-  - Contribution [#contribution]
+  - [Contribution](#contribution)
 
-  - Tests [#tests]
+  - [Tests](#tests)
 
   ## Installation
 
@@ -54,3 +54,5 @@ Landing page for 5 day forcast.
   Testing will be done through execution of the app before deployment.
 
 
+  ## Images
+  ![ScreenShot](./assets/images/Screen_Shot.png)
