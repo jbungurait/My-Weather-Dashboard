@@ -23,10 +23,19 @@ var cityHistory = function () {
   for (let index = 0; index < historyArray.length; index++) {
     const listEL = historyArray[index];
     const buttonEL = `<button 
-    class="cities btn btn-success">${listEL}</button>`
+    class="cities btn btn-success" id="${listEL}">${listEL}</button>`
     searchHistoryEL.append(buttonEL);
 
+    const btn = document.getElementById(listEL);
+    btn.addEventListener('click', function() {
+      var current = $(".current");
+      current.remove();
+      var weekly = $('.weekly');
+      weekly.remove();
+      getCityWeather(listEL)
+    });
   };
+
 };
 
 var getCityWeather = function (city) {
